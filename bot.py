@@ -1,6 +1,8 @@
 from pyrogram import Client
 from config import API_ID, API_HASH, BOT_TOKEN
 
+PORT = "8080"
+
 class Bot(Client):
 
     def __init__(self):
@@ -20,6 +22,10 @@ class Bot(Client):
         await super().start()
         me = await self.get_me()
         self.username = '@' + me.username
+        app = web.AppRunner(await web_server())
+        await app.setup()
+        bind_address = "0.0.0.0"
+        await web.TCPSite(app, bind_address, PORT).start()
             
         print('Bot Started Powered By @VJ_Botz')
 
