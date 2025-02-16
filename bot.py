@@ -1,7 +1,11 @@
 from pyrogram import Client
 from config import API_ID, API_HASH, BOT_TOKEN
 
-PORT = "8080"
+from aiohttp import web
+from plugins import web_server
+from os import environ
+
+PORT = environ.get("PORT", "8080")
 
 class Bot(Client):
 
