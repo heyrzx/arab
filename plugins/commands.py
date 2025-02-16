@@ -52,7 +52,7 @@ async def accept(client, message):
     try:
         while True:
             await acc.approve_all_chat_join_requests(chat_id)
-            await asyncio.sleep(1)
+            await asyncio.sleep(2)
             join_requests = [request async for request in acc.get_chat_join_requests(chat_id)]
             if not join_requests:
                 break
