@@ -17,10 +17,10 @@ async def start_message(c,m):
         await db.add_user(m.from_user.id, m.from_user.first_name)
         await c.send_message(LOG_CHANNEL, LOG_TEXT.format(m.from_user.id, m.from_user.mention))
     await m.reply(
-        text=f"<b>Hello {m.from_user.mention} 👋\n\nI Am Join Request Acceptor Bot. I Can Accept All Old Pending Join Request.\n\nFor All Pending Join Request Use - /accept</b>",
+        text=f"<b>Hello {m.from_user.mention} 👋\n\nI Am Join Request Acceptor Bot. I Can Accept All Old Pending & New Join Request In Your Groups/Channels.\nFor All Pending Join Request Use - /accept\nFor New Join Request Add Me To Your Chat And Promote Me To Admin With Add Members Permission</b>",
         reply_markup=InlineKeyboardMarkup(
             [[
-                InlineKeyboardButton('🍃 ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 🍃', url='https://t.me/rzxbots')
+                InlineKeyboardButton('🍃 ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 🍃', url='https://t.me/ck_linkz')
             ]]
         )
     )
@@ -77,13 +77,13 @@ async def approve_new(client, m):
         # Welcome message with a button
         keyboard = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("Support", url="https://t.me/rzxbots")]
+                [InlineKeyboardButton("🍃 ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 🍃", url="https://t.me/ck_linkz")]
             ]
         )
         try:
             await client.send_message(
                 m.from_user.id,
-                "**Hello {}!\nWelcome To {}\n\n__Powered By : @rzxbots__**".format(
+                "**Hello {}!\nWelcome To {}\n\n__Powered By : @ck_linkz__**".format(
                     m.from_user.mention, m.chat.title),
                 reply_markup=keyboard
             )
