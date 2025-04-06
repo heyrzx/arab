@@ -2,6 +2,8 @@ import time
 from pyrogram import Client, filters
 import psutil
 import asyncio
+from database import db
+from config import ADMINS
 
 start_time = time.time()
 
@@ -30,3 +32,16 @@ async def ping(_, message):
 @Client.on_message(filters.command("alive"))
 async def check_alive(_, message):
     await message.reply_text("𝖡𝗎𝖽𝖽𝗒 𝖨𝖺𝗆 𝖠𝗅𝗂𝗏𝖾 :) 𝖧𝗂𝗍 /start", quote=True)
+
+@Client.on_message(filters.command("status") & filters.user(OWNER_ID))
+async def bot_status(client, message):
+    total_users = await db.total_users_count()
+    total_chats = await db.total_chats_count()
+
+    reply_text = (
+        f"**Bot Statistics:**\n\n"
+        f"**Total Users:** `{total_users}`\n"
+        f"**Total Chats:** `{total_chats}`"
+    )
+
+    await message.reply_text(reply_text)
