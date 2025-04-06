@@ -1,3 +1,5 @@
+# database.py
+
 import motor.motor_asyncio
 from config import DB_NAME, DB_URI
 
@@ -7,6 +9,7 @@ class Database:
         self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
         self.db = self._client[database_name]
         self.col = self.db.users
+        self.chat_col = self.db.chats
 
     def new_user(self, id, name):
         return dict(
@@ -39,5 +42,18 @@ class Database:
     async def get_session(self, id):
         user = await self.col.find_one({'id': int(id)})
         return user['session']
+
+    # Chat-related methods
+    async def add_chat(self, chat_id):
+        exists = await self.chat_col.find_one({'id': int(chat_id)})
+        if not exists:
+            await self.chat_col.insert_one({'id': int(chat_id)})
+
+    async def total_chats_count(self):
+        count = await self.chat_col.count_documents({})
+        return count
+
+    async def get_all_chats(self):
+        return self.chat_col.find({})
 
 db = Database(DB_URI, DB_NAME)
