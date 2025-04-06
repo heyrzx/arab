@@ -2,7 +2,7 @@ import time
 from pyrogram import Client, filters
 import psutil
 import asyncio
-from database import db
+from plugins.database import db
 from config import ADMINS
 
 start_time = time.time()
