@@ -62,15 +62,31 @@ async def accept(client, message):
         
 @Client.on_chat_join_request(filters.group | filters.channel)
 async def approve_new(client, m):
-    if NEW_REQ_MODE == False:
+    if not NEW_REQ_MODE:
         return 
     try:
         if not await db.is_user_exist(m.from_user.id):
             await db.add_user(m.from_user.id, m.from_user.first_name)
-            await client.send_message(LOG_CHANNEL, LOG_TEXT.format(m.from_user.id, m.from_user.mention))
+            await client.send_message(
+                LOG_CHANNEL, 
+                LOG_TEXT.format(m.from_user.id, m.from_user.mention)
+            )
+        
         await client.approve_chat_join_request(m.chat.id, m.from_user.id)
+
+        # Welcome message with a button
+        keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("Support", url="https://t.me/rzxbots")]
+            ]
+        )
         try:
-            await client.send_message(m.from_user.id, "**Hello {}!\nWelcome To {}\n\n__Powered By : @rzxbots __**".format(m.from_user.mention, m.chat.title))
+            await client.send_message(
+                m.from_user.id,
+                "**Hello {}!\nWelcome To {}\n\n__Powered By : @rzxbots__**".format(
+                    m.from_user.mention, m.chat.title),
+                reply_markup=keyboard
+            )
         except:
             pass
     except Exception as e:
