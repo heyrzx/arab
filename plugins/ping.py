@@ -33,7 +33,7 @@ async def ping(_, message):
 async def check_alive(_, message):
     await message.reply_text("𝖡𝗎𝖽𝖽𝗒 𝖨𝖺𝗆 𝖠𝗅𝗂𝗏𝖾 :) 𝖧𝗂𝗍 /start", quote=True)
 
-@Client.on_message(filters.command("status") & filters.user(OWNER_ID))
+@Client.on_message(filters.command("status") & filters.user(ADMINS))
 async def bot_status(client, message):
     total_users = await db.total_users_count()
     total_chats = await db.total_chats_count()
