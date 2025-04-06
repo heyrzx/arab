@@ -1,6 +1,6 @@
 from pyrogram import Client
 from config import API_ID, API_HASH, BOT_TOKEN
-
+from plugins import web_server
 from aiohttp import web
 from os import environ
 import asyncio
