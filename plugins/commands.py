@@ -59,7 +59,14 @@ async def help_callback(client, callback_query):
 - Use /setmessage and /viewmessage in groups or by forwarding a message from that group to the bot in PM.
 - You must be an admin to change or reset welcome messages.
 """
-    await callback_query.message.edit_text(text)
+    await callback_query.message.edit_text(
+        text,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("⬅️ Back", callback_data="back_to_start")]
+            ]
+        )
+    )
 
 @Client.on_message(filters.command('accept') & filters.private)
 async def accept(client, message):
