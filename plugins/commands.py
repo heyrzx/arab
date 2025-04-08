@@ -117,7 +117,20 @@ async def set_message(client, message):
             return await message.reply(f"**Error checking permissions:** {str(e)}")
 
         if len(message.command) == 1:
-            return await message.reply("**Please provide a message to set.\n\nUsage: /setmessage Your custom welcome message\n\nYou can use {mention} to tag the user and {chat} for the chat name.**")
+            return await message.reply(
+                "**Please provide a message to set.**\n\n"
+                "**Usage:** `/setmessage Your custom welcome message`\n\n"
+                "**Available placeholders:**\n"
+                "- `{mention}` → Tag the user\n"
+                "- `{chat}` → Chat/group/channel name\n\n"
+                "**Supported HTML tags:**\n"
+                "- `<b>bold</b>`\n"
+                "- `<i>italic</i>`\n"
+                "- `<u>underline</u>`\n"
+                "- `<s>strikethrough</s>`\n"
+                "- `<code>monospace</code>`\n"
+                "- `<a href='https://example.com'>inline link</a>`"
+            )
 
         custom_message = message.text.split(None, 1)[1]
         await db.set_custom_approve_message(chat_id, custom_message)
