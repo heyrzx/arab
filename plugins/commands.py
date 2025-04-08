@@ -260,7 +260,7 @@ async def approve_new(client, m):
         try:
             if custom_message:
                 welcome_text = custom_message.replace("{mention}", m.from_user.mention).replace("{chat}", m.chat.title)
-                welcome_text = f"{welcome_text}\n\n__Powered By : @ck_linkz__"
+                welcome_text = f"{welcome_text}"
             else:
                 welcome_text = "**Hello {}!\nWelcome To {}\n\n__Powered By : @ck_linkz__**".format(
                     m.from_user.mention, m.chat.title)
