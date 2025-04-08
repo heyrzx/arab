@@ -68,6 +68,38 @@ async def help_callback(client, callback_query):
         )
     )
 
+# Add this near your other callback_query handlers
+@Client.on_callback_query(filters.regex("start"))
+async def back_to_start(client, callback_query):
+    user = callback_query.from_user
+
+    start_text = f"""<b>Hello {user.mention} 👋
+
+I'm a smart Join Request Manager Bot built to help you manage join requests in your Telegram Groups and Channels effortlessly.
+
+<b>What I Can Do:</b>
+• Automatically approve new join requests.
+• Instantly accept all old/pending requests.
+• Let you set a custom welcome message.
+• Work in both groups and channels.
+• Ensure a smooth onboarding experience for new members.
+
+Tap the <u>"How To Use Me"</u> button below to learn how to get started!
+
+<b>Powered By:</b> @ck_linkz</b>
+"""
+
+    await callback_query.message.edit_text(
+        text=start_text,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("🍃 ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 🍃", url="https://t.me/ck_linkz")],
+                [InlineKeyboardButton("♻️ ʜᴏᴡ ᴛᴏ ᴜꜱᴇ ᴍᴇ ♻️", callback_data="help")]
+            ]
+        )
+    )
+    
+
 @Client.on_message(filters.command('accept') & filters.private)
 async def accept(client, message):
     show = await message.reply("**Please Wait.....**")
