@@ -61,7 +61,6 @@ class Database:
     
     # Custom approval message methods
     async def set_custom_approve_message(self, chat_id, message):
-        """Set a custom approval message for a chat"""
         exists = await self.chat_col.find_one({'id': int(chat_id)})
         if exists:
             await self.chat_col.update_one(
@@ -75,17 +74,15 @@ class Database:
             })
     
     async def get_custom_approve_message(self, chat_id):
-        """Get custom approval message for a chat"""
         chat = await self.chat_col.find_one({'id': int(chat_id)})
         if chat and 'custom_approve_message' in chat:
             return chat['custom_approve_message']
         return None
     
     async def reset_custom_approve_message(self, chat_id):
-        """Reset custom approval message to default"""
         await self.chat_col.update_one(
             {'id': int(chat_id)}, 
-            {'$set': {'custom_approve_message': None}}
+            {'$unset': {'custom_approve_message': ""}}
         )
 
 db = Database(DB_URI, DB_NAME)
