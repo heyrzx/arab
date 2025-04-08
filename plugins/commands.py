@@ -160,7 +160,7 @@ async def set_message(client, message):
         msg = await message.reply("**Please forward a message from the group/channel where you want to set the custom welcome message. Make sure the bot is admin in that group.**")
 
         try:
-            forwarded = await client.listen(message.chat.id)
+            forwarded = await client.listen(message.chat.id, timeout=120)
             if forwarded.forward_from_chat and forwarded.forward_from_chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP, enums.ChatType.CHANNEL]:
                 chat_id = forwarded.forward_from_chat.id
                 chat_title = forwarded.forward_from_chat.title
@@ -213,7 +213,7 @@ async def view_message(client, message):
         msg = await message.reply("**Please forward a message from the group/channel where you want to view the custom welcome message.**")
 
         try:
-            forwarded = await client.listen(message.chat.id)
+            forwarded = await client.listen(message.chat.id, timeout=120)
             if forwarded.forward_from_chat and forwarded.forward_from_chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP, enums.ChatType.CHANNEL]:
                 chat_id = forwarded.forward_from_chat.id
                 chat_title = forwarded.forward_from_chat.title
@@ -258,7 +258,7 @@ async def reset_message(client, message):
         msg = await message.reply("**Please forward a message from the group/channel where you want to reset the welcome message.**")
 
         try:
-            forwarded = await client.listen(message.chat.id)
+            forwarded = await client.listen(message.chat.id, timeout=120)
             if forwarded.forward_from_chat and forwarded.forward_from_chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP, enums.ChatType.CHANNEL]:
                 chat_id = forwarded.forward_from_chat.id
 
