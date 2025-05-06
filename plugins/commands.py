@@ -30,14 +30,14 @@ I'm a smart Join Request Manager Bot built to help you manage join requests in y
 
 Tap the <u>"How To Use Me"</u> button below to learn how to get started!
 
-<b>Powered By:</b> @ck_linkz</b>
+<b>Powered By:</b> @HVCOMMUNITY</b>
 """
 
     await m.reply(
         text=start_text,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("🍃 ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 🍃", url="https://t.me/ck_linkz")],
+                [InlineKeyboardButton("🍃 ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 🍃", url="https://t.me/HVCOMMUNITY")],
                 [InlineKeyboardButton("♻️ ʜᴏᴡ ᴛᴏ ᴜꜱᴇ ᴍᴇ ♻️", callback_data="help")]
             ]
         )
@@ -85,14 +85,14 @@ I'm a smart Join Request Manager Bot built to help you manage join requests in y
 
 Tap the <u>"How To Use Me"</u> button below to learn how to get started!
 
-<b>Powered By:</b> @ck_linkz</b>
+<b>Powered By:</b> @HVCOMMUNITY</b>
 """
 
     await callback_query.message.edit_text(
         text=start_text,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("🍃 ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 🍃", url="https://t.me/ck_linkz")],
+                [InlineKeyboardButton("🍃 ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 🍃", url="https://t.me/HVCOMMUNITY")],
                 [InlineKeyboardButton("♻️ ʜᴏᴡ ᴛᴏ ᴜꜱᴇ ᴍᴇ ♻️", callback_data="help")]
             ]
         )
@@ -292,7 +292,7 @@ async def approve_new(client, m):
         custom_message = await db.get_custom_approve_message(m.chat.id)
         keyboard = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("🍃 ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 🍃", url="https://t.me/ck_linkz")]
+                [InlineKeyboardButton("🍃 ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 🍃", url="https://t.me/HVCOMMUNITY")]
             ]
         )
         try:
@@ -300,7 +300,7 @@ async def approve_new(client, m):
                 welcome_text = custom_message.replace("{mention}", m.from_user.mention).replace("{chat}", m.chat.title)
                 welcome_text = f"{welcome_text}"
             else:
-                welcome_text = "**Hello {}!\nWelcome To {}\n\n__Powered By : @ck_linkz__**".format(
+                welcome_text = "**Hello {}!\nWelcome To {}\n\n__Powered By : @HVCOMMUNITY__**".format(
                     m.from_user.mention, m.chat.title)
                 
             await client.send_message(
