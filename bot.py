@@ -51,7 +51,7 @@ class Bot(Client):
         """Send periodic requests to keep the bot alive"""
         while True:
             try:
-                await asyncio.sleep(180)  # 3 minutes
+                await asyncio.sleep(120)  # 2 minutes
                 print("Keep-alive ping...")
             except Exception as e:
                 print(f"Keep-alive error: {e}")
