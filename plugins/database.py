@@ -36,13 +36,6 @@ class Database:
     async def delete_user(self, user_id):
         await self.col.delete_many({'id': int(user_id)})
 
-    async def set_session(self, id, session):
-        await self.col.update_one({'id': int(id)}, {'$set': {'session': session}})
-
-    async def get_session(self, id):
-        user = await self.col.find_one({'id': int(id)})
-        return user['session']
-
     # Chat-related methods
     async def add_chat(self, chat_id):
         exists = await self.chat_col.find_one({'id': int(chat_id)})
